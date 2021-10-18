@@ -19,3 +19,100 @@ body {}
 .studentName{
     color:#999;
 }
+
+nav {
+    background-color: darkgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navlink {
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-left:30px;
+    text-decoration: none;
+  }
+
+
+h3{
+    font-size: 25pt;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h4{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.aboutuser{
+    background-color: lightgoldenrodyellow;
+    padding-left: 10px;
+}
+
+.linkcolor{
+    color:crimson;
+    font-style: italic;
+}
+
+.bodymain {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#team {
+    font-weight: bold;
+    color: cadetblue;
+    font-style: italic;
+    font-size:x-small
+}
+
+#untilnow {
+    font-weight: bold;
+    color: green;
+    font-style: italic;
+}
+
+.contact {
+    background-color:lightskyblue;
+    padding: 10px;
+}
+
+/*The following code are used for formatting table and making the table sortable
+I found the code through following professor Gregory's "Adding a sort table script" lecture"
+The code was taken from https://github.com/tristen/tablesort/blob/gh-pages/tablesort.css*/
+
+th[role=columnheader]:not(.no-sort) {
+	cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+	content: '';
+	float: right;
+	margin-top: 7px;
+	border-width: 0 4px 4px;
+	border-style: solid;
+	border-color: #404040 transparent;
+	visibility: hidden;
+	opacity: 0;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+	border-bottom: none;
+	border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+	visibility: visible;
+	opacity: 1;
+}
+
+

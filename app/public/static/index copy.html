@@ -1,0 +1,102 @@
+<html>
+        <!doctype html>
+        <html lang="en">
+
+        <!--The following meta and link within the header section is taken from Bootstrap
+        Link: https://getbootstrap.com/docs/5.1/getting-started/introduction/
+        Section: Starter Template-->
+          <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- The first link is Bootstrap's own CSS. The second link is my personal css that overrides certain Boostrap's css-->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+            <link href="css/style.css" rel="stylesheet" type="text/css">
+
+
+            <!-- The following link is found through Vue.JS' official site
+            Link: https://v3.vuejs.org/guide/installation.html#release-notes-->
+            <script src="https://unpkg.com/vue@next"></script>
+
+            <!-- The following link is found through following professor Gregory's live lecture-->
+            <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+          </head>
+          
+
+
+          <body>
+
+            <!-- The navigation contains all 3 active pages: Home Page, User Info and Tables -->
+            <nav class="nav">
+              <a class="navlink" href="home.html">Home</a>
+              <a class="navlink" href="index.html">User Info</a>
+              <a class="navlink" href="tables.html">Tables</a>
+            </nav>
+
+            <!-- This form code was taken from and during professor Gregory's live lecture
+            When the button is clicked, run the fetch user function and prevent avoids the entire page from refreshing; keeps the change just to our user information -->
+            <div class="container">
+              <h3>User Information</h3>
+                <div id="offerApp" class="col col-8">
+                  <form v-on:submit.prevent="fetchUserData">
+                    <button type="submit">New User</button>
+                  </form>
+
+                  <!-- the following information were found through creating/printing {{person}} and finding information within the API
+                  Leanred about v-bind through office hour recordings
+                  Learned about "_blank through W3 School link: https://www.w3schools.com/howto/howto_css_thumbnail.as "  -->
+                  <p>User Name: {{ person.name.first }} {{ person.name.last }}</p>
+                  <a v-bind:href = "person.picture.large"> <img target= "_blank" v-bind:src="person.picture.large"></a>
+                  <p>User's Birthdate: {{ prettyBirthday }}</p>
+                  <p>User's Age: {{ person.dob.age }}</p>
+                  <p>User's Country of Origin: {{ person.location.country }}</p>
+                  <p>User Email: <a v-bind:href="'mailto:'+person.email">{{ person.email }}</a></p>
+
+
+                </div>
+            </div>
+
+
+
+                <!--The following form is not functional. It is not connected to a database to store new books. 
+                The above table will not be updated, even when users fill out the form and submits it.
+                The form was designed through using Bootstap's templates
+                Source: https://getbootstrap.com/docs/5.1/forms/overview/-->
+              <form class="bodymain row g-3">
+                <div class="col-8">
+                <label for="email" class="form-label">Update Email</label>
+                <input type="text" class="form-control" id="email">
+                </div>
+
+                <div class="col-8">
+                <label for="LinkedIn" class="form-label">Update LinkedIn</label>
+                <input type="text" class="form-control" id="LinkedIn">
+                <div id="authorhelp" class="form-text">Please include the entire URL</div>
+                </div>
+
+                <div class="col-6">
+                <label for="phone" class="form-label">Update Phone Number</label>
+                <input type="number" class="form-control" id="phone">
+                </div>
+
+                <div class="col-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+                
+            </div>
+
+            <!-- Importing JS, as followed through VueMastery Recorded lectures
+            <script src="js/index.js"></script>
+            <script> const mountedApp = app.mount('#app') </script>
+            </body>-->
+
+
+            <!-- Got the following code through JS' official sight and following professor Gregory's live lecture -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+            <script src="js/index.js"></script>
+          </body>
+</html>
