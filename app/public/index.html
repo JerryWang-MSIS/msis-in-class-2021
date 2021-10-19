@@ -69,6 +69,37 @@
               </tbody>
             </table>
 
+            <form v-on:submit.prevent="postNewOffer">
+              <div class="mb-3">
+                <label for="title" class="form-label">Book Title</label>
+                <input type="text" v-model="offerForm.title" class="form-control" id="title">
+              </div>
+              <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" v-model="offerForm.author" class="form-control" id="author">
+              </div>
+              <div class="mb-3">
+                <label for="year" class="form-label">Year Published</label>
+                <input type="number" v-model="offerForm.year" class="form-control" id="year">
+              </div>
+              <div class="mb-3">
+                <label for="publisher" class="form-label">Publisher</label>
+                <input type="text" v-model="offerForm.publisher" class="form-control" id="publisher">
+              </div>
+              <div class="mb-3">
+                <label for="page" class="form-label">Total Pages</label>
+                <input type="number" v-model="offerForm.page" class="form-control" id="page">
+              </div>
+              <div class="mb-3">
+                <label for="MSRP" class="form-label">MSRP</label>
+                <input type="number" v-model="offerForm.MSRP" class="form-control" id="MSRP">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="noOffers" v-if="! offers.length">
+              <h3>No offers. 😥</h3>
+            </div>
+
           </div>
 
     </div>
