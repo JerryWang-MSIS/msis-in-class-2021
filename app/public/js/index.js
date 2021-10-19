@@ -2,9 +2,10 @@
 const SomeApp = {
     data() {
       return {
-        books: [],
+        "books": []
       }
     },
+
     computed: {},
     methods: {
         prettyData(d) {
@@ -15,23 +16,23 @@ const SomeApp = {
             const d = new Intl.NumberFormat("en-US").format(n);
             return "$ " + d;
         },
-        selectStudent(s) {
-            if (s == this.selectedStudent) {
+        selectBooks(s) {
+            if (s == this.selectedBooks) {
                 return;
             }
-            this.selectedStudent = s;
+            this.selectedBooks = s;
             this.offers = [];
-            this.fetchOfferData(this.selectedStudent);
+            this.fetchBooksData(this.selectedBooks);
         },
 
         fetchBooksData() {
             fetch('/api/books/')
             .then( response => response.json() )
             .then( (responseJson) => {
-            console.log(responseJson);
-            this.books = responseJson;
+                console.log(responseJson);
+                this.books = responseJson;
             })
-            .catch((err) => {
+            .catch( (err) => {
                 console.error(err);
             })
         },
@@ -74,10 +75,11 @@ const SomeApp = {
             });
         }
     },
+
     created() {
         this.fetchBooksData();
     }
   
-  }
+}
   
   Vue.createApp(SomeApp).mount('#offerApp');

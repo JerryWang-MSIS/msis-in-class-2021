@@ -1,5 +1,6 @@
 <?php
 // require 'common.php';
+// The following code was taken from Professor Gregory's lecture. However, I did amend parts of the code to reflect my personal SQL database
 require 'class/DbConnection.php';
 
 // Step 1: Get a datase connection from our helper class

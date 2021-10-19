@@ -1,3 +1,5 @@
+-- The following code was taken from professor gregory's online lecture
+
 CREATE DATABASE IF NOT EXISTS msisdb;
 USE msisdb;
 

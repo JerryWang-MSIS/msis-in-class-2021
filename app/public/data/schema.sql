@@ -1,6 +1,3 @@
--- database-2.cluster-ro-cowe6qx6tye0.us-east-2.rds.amazonaws.com
--- CREATE USER 'msis-reader'@'%' IDENTIFIED BY 'msisreadonly';
-
 DROP TABLE IF EXISTS students;
 CREATE TABLE students (
 	id int PRIMARY KEY AUTO_INCREMENT ,

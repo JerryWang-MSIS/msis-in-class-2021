@@ -1,6 +1,9 @@
 <?php
 require 'class/DbConnection.php';
 
+// The following code was taken from Professor Gregory's lecture. However, I did amend parts of the code to reflect my personal SQL database
+
+
 // Step 1: Get a datase connection from our helper class
 $db = DbConnection::getConnection();
 
