@@ -11,25 +11,18 @@
     
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <title>Hello, world!</title>
+    <title>Welcome to Jerry's Website</title>
   </head>
 
-   <!-- The following code was taken from Professor Gregory's lecture. However, I did amend parts of the code to reflect my personal SQL database -->
+   <!-- The following code for the Nav-Bar was taken from Professor Gregory's lecture. However, I did amend parts of the code to reflect my personal SQL database -->
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Menu</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
-
-            <!-- The first link is Bootstrap's own CSS. The second link is my personal css that overrides certain Boostrap's css-->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-            <link href="css/style.css" rel="stylesheet" type="text/css">
-    
-        </head>
 
           <nav class="nav">
             <a class="navlink" href="static/home.html">Home</a>
@@ -40,71 +33,79 @@
       </div>
     </nav>
 
+    <!-- Following table structure was taken from Professor Gregory's lecture. Changes were made to adjust to my Books SQL Table -->
+
     <div id="offerApp" class="container">
+      <div>
+        <h2>Books Information & Records</h2>
 
-          <div>
-            <h1>Books Information & Records</h1>
+        <table class="table">
+          <thead>
+            <tr>
+                <th scope="col">Books ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author(s)</th>
+                <th scope="col">Year Published</th>
+                <th scope="col">Publisher</th>
+                <th scope="col">Page Counts</th>
+                <th scope="col">MSRP</th>
+            </tr>
+          </thead>
 
-            <table class="table">
-              <thead>
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author(s)</th>
-                    <th scope="col">Year Published</th>
-                    <th scope="col">Publisher</th>
-                    <th scope="col">Page Counts</th>
-                    <th scope="col">MSRP</th>
-                </tr>
-              </thead>
+          <tbody>
+            <tr v-for="a in books">
+              <td>{{ a.booksid }}</td>
+              <td>{{ a.title }}</td>
+              <td>{{ a.author }}</td>
+              <td>{{ a.year }}</td>
+              <td>{{ a.publisher }}</td>
+              <td>{{ a.page }}</td>
+              <td>{{ a.MSRP }}</td>
+              <td>
+                <button type="button" v-on:click="handleEditOffer(books)" class="btn btn-outline-secondary btn-sm">Update</button>
+                <button type="button" v-on:click="postDeleteOffer(books)" class="btn btn-outline-secondary btn-sm">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-              <tbody>
-                <tr v-for="a in books">
-                  <td>{{ a.title }}</td>
-                  <td>{{ a.author }}</td>
-                  <td>{{ a.year }}</td>
-                  <td>{{ a.publisher }}</td>
-                  <td>{{ a.page }}</td>
-                  <td>{{ a.MSRP }}</td>
-                </tr>
-              </tbody>
-            </table>
+      <!-- Following form structure was taken from Professor Gregory's lecture. Changes were made to reflect Books Table, Form and SQL -->
 
-            <form v-on:submit.prevent="postNewOffer">
-              <div class="mb-3">
-                <label for="title" class="form-label">Book Title</label>
-                <input type="text" v-model="offerForm.title" class="form-control" id="title">
-              </div>
-              <div class="mb-3">
-                <label for="author" class="form-label">Author</label>
-                <input type="text" v-model="offerForm.author" class="form-control" id="author">
-              </div>
-              <div class="mb-3">
-                <label for="year" class="form-label">Year Published</label>
-                <input type="number" v-model="offerForm.year" class="form-control" id="year">
-              </div>
-              <div class="mb-3">
-                <label for="publisher" class="form-label">Publisher</label>
-                <input type="text" v-model="offerForm.publisher" class="form-control" id="publisher">
-              </div>
-              <div class="mb-3">
-                <label for="page" class="form-label">Total Pages</label>
-                <input type="number" v-model="offerForm.page" class="form-control" id="page">
-              </div>
-              <div class="mb-3">
-                <label for="MSRP" class="form-label">MSRP</label>
-                <input type="number" v-model="offerForm.MSRP" class="form-control" id="MSRP">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <div class="noOffers" v-if="! offers.length">
-              <h3>No offers. 😥</h3>
-            </div>
+      <h4> Add another book</h4>
 
+        <form v-on:submit.prevent="postNewBooks">
+          <div class="mb-3">
+            <label for="title" class="form-label">Book Title</label>
+            <input type="text" v-model="offerForm.title" class="form-control" id="title">
           </div>
+          <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" v-model="offerForm.author" class="form-control" id="author">
+          </div>
+          <div class="mb-3">
+            <label for="year" class="form-label">Year Published</label>
+            <input type="number" v-model="offerForm.year" class="form-control" id="year">
+          </div>
+          <div class="mb-3">
+            <label for="publisher" class="form-label">Publisher</label>
+            <input type="text" v-model="offerForm.publisher" class="form-control" id="publisher">
+          </div>
+          <div class="mb-3">
+            <label for="page" class="form-label">Total Pages</label>
+            <input type="number" v-model="offerForm.page" class="form-control" id="page">
+          </div>
+          <div class="mb-3">
+            <label for="MSRP" class="form-label">MSRP</label>
+            <input type="number" v-model="offerForm.MSRP" class="form-control" id="MSRP">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
+    <!-- Bootstrap Bundle with Popper
+    Plus, it is taken from professor Gregory's lecture  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 

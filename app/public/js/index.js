@@ -2,7 +2,9 @@
 const SomeApp = {
     data() {
       return {
-        "books": []
+        "books": [],
+        offerbooks: {},
+        offerForm: {}
       }
     },
 
@@ -37,27 +39,14 @@ const SomeApp = {
             })
         },
 
-        fetchOfferData(s) {
-            console.log("Fetching offer data for ", s);
-            fetch('/api/offer/?books=' + s.title)
-            .then( response => response.json() )
-            .then( (responseJson) => {
-                console.log(responseJson);
-                this.offers = responseJson;
-            })
-            .catch( (err) => {
-                console.error(err);
-            })
-            .catch( (error) => {
-                console.error(error);
-            });
-        },
+
+        // The following code is taken from Professor Gregory's lecture. Changes have been made to reflect Books and functions.
 
         postNewOffer(evt) {     
           console.log("Posting:", this.offerForm);
           // alert("Posting!");
   
-          fetch('api/books/index.php', {
+          fetch('api/books/create.php', {
             method:'POST',
             body: JSON.stringify(this.offerForm),
             headers: {
@@ -68,18 +57,16 @@ const SomeApp = {
           .then( json => {
             console.log("Returned from post:", json);
             // TODO: test a result was returned!
-            this.books = json;
+            this.offers = json;
             
-            // reset the form
-            this.offerForm = {};
           });
       }
-  },
+    },
 
     created() {
         this.fetchBooksData();
     }
   
-}
+    }
   
   Vue.createApp(SomeApp).mount('#offerApp');

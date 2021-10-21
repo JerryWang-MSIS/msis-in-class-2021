@@ -1,4 +1,6 @@
 
+/* this code is from professor Gregory. It has not been used or referrenced in any way.
+This code is here to allow myself to easily compare my code with professor's code to find issues */
 
 const SomeApp = {
     data() {
