@@ -1,5 +1,7 @@
 <?php
 
+//The following code is taken from professor gregory's lecture
+
 class DbConnection
 {
   protected static $connection;
